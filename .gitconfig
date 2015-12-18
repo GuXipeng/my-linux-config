@@ -1,0 +1,13 @@
+[user]
+	name = xipeng.gu
+	email = xipeng.gu@sim.com
+[color]
+	ui = auto
+[core]
+	editor = vim
+	autocrlf = input
+	excludesfile = /home/gxp/.gitignore_global
+[alias]
+	glog = log --graph
+[push]
+	default = simple
