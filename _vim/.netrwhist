@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/gxp/workspace/s201-s700-w80/kernel/drivers/input/touchscreen/gt9xx'
+let g:netrw_dirhist_2='/home/gxp/workspace/s201-s700-w80/kernel/drivers/input/touchscreen/gt950'
+let g:netrw_dirhist_3='/home/gxp/workspace/kodak/kernel/drivers/media/platform/msm/camera_v2/sensor'
