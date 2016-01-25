@@ -57,9 +57,10 @@ map Q gq
 inoremap <C-U> <C-G>u<C-U>
 
 " In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
-  set mouse=a
-endif
+"if has('mouse')
+"  set mouse=a
+"endif
+set mouse=a
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
@@ -258,12 +259,15 @@ if has("autocmd")
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 " 选中状态下 Ctrl+c 复制
-map <C-v> "*pa
-imap <C-v> <Esc>"*pa
-imap <C-a> <Esc>^
-imap <C-e> <Esc>$
-vmap <C-c> "+ 
+"map <C-v> "*pa
+"imap <C-v> <Esc>"*pa
+"imap <C-a> <Esc>^
+"imap <C-e> <Esc>$
+"vmap <C-c> "+
 " search ignore case 忽略大小写
 set ignorecase smartcase
 " remap esc 
 inoremap jj <ESC>
+"set formats for <C-a> and <C-x>
+"set nf=alpha,octal,hex
+set history=200
