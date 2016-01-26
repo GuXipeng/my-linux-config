@@ -41,7 +41,6 @@ if has("vms")
 else
   set backup		" keep a backup file
 endif
-set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
@@ -251,7 +250,7 @@ let showmarks_hlline_upper = 1
 " markbrowser setting
 """""""""""""""""""""""""""""""
 nmap <silent> <leader>mk :MarksBrowser<cr> 
-colorscheme desert256
+:source ~/.vim/colors/vividchalk.vim
 
 " Uncomment the following to have Vim jump to the last position when
 " " reopening a file
@@ -271,3 +270,16 @@ inoremap jj <ESC>
 "set formats for <C-a> and <C-x>
 "set nf=alpha,octal,hex
 set history=200
+"Easy Expansion of the Active File Directory
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+"break the habit of using arrow keys
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+"Enable matchit to enhance the functionality of the % command
+runtime macros/matchit.vim
+" enable pathogen plugin
+execute pathogen#infect()
+" set pastetoggle for paste from clipboard
+set pt=<F4>
