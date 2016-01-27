@@ -84,6 +84,8 @@ if has("autocmd")
   autocmd FileType text setlocal textwidth=78
   " set Ruby tabwidth
   autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
+  " set .vim tabwidth
+  autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
   " (happens when dropping a file on gvim).
@@ -284,3 +286,15 @@ runtime macros/matchit.vim
 execute pathogen#infect()
 " set pastetoggle for paste from clipboard
 set pt=<F4>
+" remap <C-l> as mute highlighting
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+" remap * and # in visual mode that search for the current selection without
+" being derailed by special characters (eg. \ ?)
+xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
+xnoremap # :<C-u>call <SID>VSetSearch()<CR>?<C-R>=@/<CR><CR>
+function! s:VSetSearch()
+	let temp = @s
+	norm! gv"sy
+	let @/ = '\V' . substitute(escape(@s, '/\'), '\n', '\\n', 'g')
+	let @s = temp
+endfunction
