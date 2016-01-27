@@ -82,7 +82,8 @@ if has("autocmd")
 
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
-
+  " set Ruby tabwidth
+  autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
   " (happens when dropping a file on gvim).
@@ -92,7 +93,8 @@ if has("autocmd")
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
-
+  " buff list
+  autocmd BufWinEnter \[Buf\ List\] setl nonumber
   augroup END
 
 else
@@ -165,7 +167,6 @@ let g:bufExplorerSortBy='mru'        " Sort by most recently used.
 let g:bufExplorerSplitVertical=1     " Split vertically.
 let g:bufExplorerSplitVertSize = 30  " Split width
 let g:bufExplorerUseCurrentWindow=1  " Open in new window.
-"autocmd BufWinEnter \[Buf\ List\] setl nonumber
 
 """""""""""""""""""""""""""""""
 " winManager setting
@@ -255,7 +256,7 @@ nmap <silent> <leader>mk :MarksBrowser<cr>
 " Uncomment the following to have Vim jump to the last position when
 " " reopening a file
 if has("autocmd")
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+"au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 " 选中状态下 Ctrl+c 复制
 "map <C-v> "*pa
