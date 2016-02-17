@@ -84,6 +84,8 @@ if has("autocmd")
   autocmd FileType text setlocal textwidth=78
   " set Ruby tabwidth
   autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
+  " set javascript tabwidth
+  autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noet
   " set .vim tabwidth
   autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab
   " When editing a file, always jump to the last known cursor position.
@@ -97,6 +99,8 @@ if has("autocmd")
     \ endif
   " buff list
   autocmd BufWinEnter \[Buf\ List\] setl nonumber
+  " autocom ctags
+  "autocmd BufWritePost * call system("ctags -R")
   augroup END
 
 else
@@ -298,3 +302,17 @@ function! s:VSetSearch()
 	let @/ = '\V' . substitute(escape(@s, '/\'), '\n', '\\n', 'g')
 	let @s = temp
 endfunction
+" 在normal mode and visual mode 修改&命令为 &&
+nnoremap & :&&<CR>
+xnoremap & :&&<CR>
+" Qargs function
+command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
+function! QuickfixFilenames()
+  let buffer_numbers = {}
+  for quickfix_item in getqflist()
+    let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
+  endfor
+  return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
+endfunction
+" omni compl for C code
+"set tags+=~/.vim/systags
