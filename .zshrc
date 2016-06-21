@@ -53,7 +53,7 @@ plugins=(git)
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/home/gxp/Qualcomm/HEXAGON_Tools/6.4.06/jre/bin:/home/gxp/Qualcomm/HEXAGON_Tools/6.4.06/gnu/bin:/home/gxp/Qualcomm/HEXAGON_Tools/6.4.06/qc/bin:~/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -62,11 +62,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='vim'
+ else
+   export EDITOR='mvim'
+ fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -80,5 +80,19 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
+ alias zshconfig="vim ~/.zshrc"
+ alias -s py=vi       # 在命令行直接输入 python 文件，会用 vim 中打开，以下类似
+ alias -s js=vi
+ alias -s c=vi
+ alias -s java=vi
+ alias -s txt=vi
+ alias -s gz='tar -xzvf'
+ alias -s tgz='tar -xzvf'
+ alias -s zip='unzip'
+ alias -s bz2='tar -xjvf'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+# autojump 
+[[ -s /home/gxp/.autojump/etc/profile.d/autojump.sh ]] && source /home/gxp/.autojump/etc/profile.d/autojump.sh
+
+autoload -U compinit && compinit -u
+	
