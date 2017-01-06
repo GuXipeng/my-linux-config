@@ -1,0 +1,92 @@
+#!/usr/bin/perl
+#install Tk module; 1 install CPAN;
+#wget http://www.cpan.org/authors/id/A/AN/ANDK/CPAN-2.14.tar.gz
+#install it.
+#then install Tk:
+#perl -MCPAN -e shell
+#install Tk
+
+use warnings;
+use strict;
+use Tk;
+use Tk::Pane;
+use Tk::LabFrame;
+
+
+my $prj_branch;
+my $mw = MainWindow->new(-title => 'Please Select Prj_Branch');
+$mw->geometry("480x1200");
+my $push_pane = $mw->Scrolled(
+	'Pane',
+	-scrollbars => 'oe',
+	-sticky => 'ns',
+	-gridded => 'y',
+)->pack(-side => 'left', -fill => 'both', -expand => 1);
+
+my $push_frame = $mw->LabFrame(
+	-label => '=- Prj Branch List -=',
+	-labelside => 'acrosstop',
+	-font => [size => 12],
+)->pack(-side => 'left', -fill => 'both', -expand => 1);
+
+my $default_push_value = '(AUQA):MSM8909_LA_20030';
+my @push_arr = qw/(CB04):CB04-Ref (AUQA):MSM8909_LA_20030 (RIMO_ST):MSM8976_LA_11268_ST (RIMO2):MSM8996_LA_20101050 (Phonix):MSM8956_LA_11205 (CB03_M):MSM8909_LA_20035 (CB03):MSM8909_LA_1133_7106 (H01):MSM8909_LA_CB03_ODM (Liva_Juno):MSM8939_LA_V102016 (CBSDK_JB):QRD8X12_193513A_SDK (CBSDK_KK):QRD8x12_KK_1903462 (CB01):QRD8X12_LA_193513A/;
+for (@push_arr) {
+	$push_frame->Radiobutton(
+		-text => $_,
+		-value => $_,
+		-variable => \$default_push_value,
+		-font => [size => 10],
+	)->pack(-anchor => 'w');
+}
+
+
+my $bttn_push_ok = $mw->Button(
+	-text => 'Ok',
+	-command => \&getValue,
+	-width => 5,
+	-height => 1,
+	-font => [size => 10],
+)->pack(-anchor => 'e', -expand => 1);
+$bttn_push_ok->focus;
+
+my $bttn_push_exit = $mw->Button(
+	-text => 'Exit',
+	-command => sub {exit},
+	-width => 5,
+	-height => 1,
+	-font => [size => 10],
+)->pack(-anchor => 'e', -expand => 1);
+
+MainLoop;
+
+sub getValue {
+	my @true_push_value=split(/:/,$default_push_value);
+	$default_push_value = $true_push_value[1];
+	chomp($prj_branch = $default_push_value);
+	$mw->destroy;
+	goto RUN_PUSH;
+}
+
+
+RUN_PUSH:
+chomp(my $user_name = `git config user.name`);
+chomp(my $git_dir = `git rev-parse --git-dir`);
+
+if ($git_dir eq "") {
+	print "\nerror: Not a git repository\nPlease push files at a git repository dir\n";
+} else {
+	&runPush;
+}
+
+
+sub runPush {
+	chomp(my $git_prj_dir = `git remote -v`);
+	$git_prj_dir =~ s/.*(sim-android\/.*\.git).*/$1/g;
+	$git_prj_dir = $1;
+	$git_prj_dir =~ s/sim-android\///g;
+	$git_prj_dir =~ s/\.git//g;
+	print "\n\npushing $git_prj_dir to $prj_branch...\n\n";	
+	system("git push ssh://${user_name}\@172.16.6.11:29418/${git_prj_dir} HEAD:refs/for/$prj_branch");
+}
+
