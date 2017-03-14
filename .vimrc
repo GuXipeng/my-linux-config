@@ -86,6 +86,8 @@ if has("autocmd")
   autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
   " set javascript tabwidth
   autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noet
+  " set python tabwidth
+  autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
   " set .vim tabwidth
   autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab
   " When editing a file, always jump to the last known cursor position.
@@ -316,3 +318,7 @@ function! QuickfixFilenames()
 endfunction
 " omni compl for C code
 "set tags+=~/.vim/systags
+
+if exists('$TMUX')
+    set term=screen-256color
+endif
