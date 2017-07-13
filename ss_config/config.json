@@ -1,0 +1,11 @@
+{  
+"server" : "23.106.139.124",  
+"server_port" : XXX,  
+"password" : "XXXXXXXXXXX"x,
+"local_address": "127.0.0.1",  
+"local_port": 1081,  
+"method" : "chacha20",  
+"remarks" : "",  
+"fast_open": true,  
+"workers": 1  
+} 
