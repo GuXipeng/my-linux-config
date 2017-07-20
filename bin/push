@@ -6,6 +6,7 @@
 #perl -MCPAN -e shell
 #install Tk
 
+
 use warnings;
 use strict;
 use Tk;
@@ -29,8 +30,8 @@ my $push_frame = $mw->LabFrame(
 	-font => [size => 12],
 )->pack(-side => 'left', -fill => 'both', -expand => 1);
 
-my $default_push_value = '(AUQA):MSM8909_LA_20030';
-my @push_arr = qw/(CB04):CB04-Ref (AUQA):MSM8909_LA_20030 (RIMO_ST):MSM8976_LA_11268_ST (RIMO2):MSM8996_LA_20101050 (Phonix):MSM8956_LA_11205 (CB03_M):MSM8909_LA_20035 (CB03):MSM8909_LA_1133_7106 (H01):MSM8909_LA_CB03_ODM (Liva_Juno):MSM8939_LA_V102016 (CBSDK_JB):QRD8X12_193513A_SDK (CBSDK_KK):QRD8x12_KK_1903462 (CB01):QRD8X12_LA_193513A/;
+my $default_push_value = '(Carbide_new):MSM8996_LA_2011130';
+my @push_arr = qw/(CB04):CB04-Ref (WINDY):MSM8909_LA_20030_WINDY (AQUA):MSM8909_LA_20030 (Carbide_new):MSM8996_LA_2011130 (Carbide):MSM8996_LA_2010751 (RIMO_ST_DRIVER_ONLY):MSM8976_LA_1200110 (RIMO2):MSM8996_LA_20101050 (Phonix):MSM8956_LA_11205 (CB03_M):MSM8909_LA_20035 (CB03):MSM8909_LA_1133_7106 (H01):MSM8909_LA_CB03_ODM (Liva_Juno):MSM8939_LA_V102016 (CBSDK_JB):QRD8X12_193513A_SDK (CBSDK_KK):QRD8x12_KK_1903462 (CB01):QRD8X12_LA_193513A/;
 for (@push_arr) {
 	$push_frame->Radiobutton(
 		-text => $_,
