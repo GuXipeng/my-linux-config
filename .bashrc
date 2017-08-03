@@ -134,13 +134,23 @@ export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
 export OLDPWD=/etc/perl
 
 
-export PATH=~/bin:$PATH
-export HEXAGON_ROOT=/opt/Qualcomm/HEXAGON_Tools
-export ARMTOOLS=RVCT41
-export ARMBIN=/opt/ARMCT41_713/standard-linux-pentium-rel/linux-pentium
-export ARMINC=/opt/ARMCT41_713/standard-linux-pentium-rel/include/unix
-export ARMLIB=/opt/ARMCT41_713/standard-linux-pentium-rel/lib
+export PATH=/usr/bin/:/home/gxp/Qualcomm/HEXAGON_Tools/7.2.11/Tools/bin:~/bin:$PATH
+export HEXAGON_ROOT=/home/gxp/Qualcomm/HEXAGON_Tools/
+export HEXAGON_RTOS_RELEASE=7.2.11
+#export ARMTOOLS=RVCT41
+#export ARMBIN=/opt/ARMCT41_713/standard-linux-pentium-rel/linux-pentium
+#export ARMINC=/opt/ARMCT41_713/standard-linux-pentium-rel/include/unix
+#export ARMLIB=/opt/ARMCT41_713/standard-linux-pentium-rel/lib
 
 # my own work path
 kodak="/home/gxp/workspace/kodak"
+kodaklk="/home/gxp/workspace/kodak/bootable/bootloader/lk"
 kodakcamera="/home/gxp/workspace/kodak/vendor/qcom/proprietary/mm-camera/mm-camera2/media-controller/modules/sensors/sensor_libs"
+#man page color
+#export PAGER=most
+
+# git http_proxy 
+gp=" --config http.proxy=localhost:8123"
+#using ccache to compile Android Source
+export USE_CCACHE=1
+export CCACHE_DIR=$HOME/.ccache

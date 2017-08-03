@@ -27,7 +27,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -49,12 +49,20 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git web-search)
 
 # User configuration
 
-export PATH=$HOME/bin:/home/gxp/Qualcomm/HEXAGON_Tools/6.4.06/jre/bin:/home/gxp/Qualcomm/HEXAGON_Tools/6.4.06/gnu/bin:/home/gxp/Qualcomm/HEXAGON_Tools/6.4.06/qc/bin:~/usr/local/bin:$PATH
+export PATH=/usr/bin/:$HOME/bin:/$HOME/.local/bin:$HOME/Android/Sdk/tools:$HOME/Android/Sdk/build-tools/24.0.1:$HOME/Android/Sdk/platform-tools:/home/gxp/Qualcomm/HEXAGON_Tools/6.4.06/jre/bin:/home/gxp/Qualcomm/HEXAGON_Tools/6.4.06/gnu/bin:/home/gxp/Qualcomm/HEXAGON_Tools/6.4.06/qc/bin:$PATH
+export JAVA_HOME=/opt/jdk/jdk1.8.0_101
+
+export JRE_HOME=/opt/jdk/jdk1.8.0_101/jre
+
+export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
+
+export CLASSPATH=$CLASSPATH:.:$JAVA_HOME/lib:$JAVA_HOME/jre/lib 
 # export MANPATH="/usr/local/man:$MANPATH"
+export HEXAGON_ROOT=$HOME/Qualcomm/HEXAGON_Tools/
 
 source $ZSH/oh-my-zsh.sh
 
@@ -96,3 +104,16 @@ source $ZSH/oh-my-zsh.sh
 
 autoload -U compinit && compinit -u
 	
+
+PATH="/home/gxp/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/gxp/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/gxp/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/gxp/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/gxp/perl5"; export PERL_MM_OPT;
+eval $(thefuck --alias kao)
+alias st_proxy="export http_proxy=http://127.0.0.1:8123;export https_proxy=http://localhost:8123"
+alias end_proxy="export http_proxy=;export https_proxy="
+
+#using ccache to compile Android Source
+export USE_CCACHE=1
+export CCACHE_DIR=$HOME/.ccache
