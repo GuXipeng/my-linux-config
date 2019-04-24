@@ -1,2 +1,3 @@
 # my-linux-config
-config of vim bash 
+config of vim and bash 
+config of zshrc
